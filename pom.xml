@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.apdoer</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.apdoer</groupId>
+    <artifactId>trade-server</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>trade-server</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <trade.common.version>1.0.0-SNAPSHOT</trade.common.version>
+        <trade.monitor.version>1.0.0-SNAPSHOT</trade.monitor.version>
+        <trade.quot.version>1.0.0-SNAPSHOT</trade.quot.version>
+        <trade.core.version>1.0.0-SNAPSHOT</trade.core.version>
+        <trade.job.version>1.0.0-SNAPSHOT</trade.job.version>
+    </properties>
+
+
+    <dependencies>
+
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apdoer</groupId>
+                <artifactId>trade-monitor</artifactId>
+                <version>${trade.monitor.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apdoer</groupId>
+                <artifactId>trade-quot</artifactId>
+                <version>${trade.quot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apdoer</groupId>
+                <artifactId>trade-monitor</artifactId>
+                <version>${trade.monitor.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apdoer</groupId>
+                <artifactId>trade-core</artifactId>
+                <version>${trade.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apdoer</groupId>
+                <artifactId>trade-common</artifactId>
+                <version>${trade.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apdoer</groupId>
+                <artifactId>trade-job</artifactId>
+                <version>${trade.job.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

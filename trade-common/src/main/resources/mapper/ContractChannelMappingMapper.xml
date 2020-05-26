@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apdoer.trade.common.db.mapper.ContractChannelMappingMapper">
+
+    <resultMap id="BaseResultMap" type="org.apdoer.trade.common.db.model.po.ContractChannelMappingPo">
+        <result column="contract_id" property="contractId" jdbcType="INTEGER"/>
+        <result column="quot_channel" property="quotChannel" jdbcType="VARCHAR"/>
+        <result column="index_price_listener" property="indexPriceListener" jdbcType="VARCHAR"/>
+        <result column="fl_channel" property="flChannel" jdbcType="VARCHAR"/>
+        <result column="fl_listener" property="flListener" jdbcType="VARCHAR"/>
+        <result column="price_cache_listener" property="priceCacheListener" jdbcType="VARCHAR"/>
+        <result column="stop_profit_index_listener" property="stopProfitIndexListener" jdbcType="VARCHAR"/>
+        <result column="stop_profit_channel" property="stopProfitChannel" jdbcType="VARCHAR"/>
+        <result column="stop_profit_listener" property="stopProfitListener" jdbcType="VARCHAR"/>
+        <result column="stop_loss_index_listener" property="stopLossIndexListener" jdbcType="VARCHAR"/>
+        <result column="stop_loss_channel" property="stopLossChannel" jdbcType="VARCHAR"/>
+        <result column="stop_loss_listener" property="stopLossListener" jdbcType="VARCHAR"/>
+        <result column="condition_order_index_listener" property="conditionOrderIndexListener" jdbcType="VARCHAR"/>
+        <result column="condition_order_channel" property="conditionOrderChannel" jdbcType="VARCHAR"/>
+        <result column="condition_order_listener" property="conditionOrderListener" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    contract_id, quot_channel, index_price_listener, fl_channel, fl_listener, price_cache_listener,
+    stop_profit_index_listener,description, stop_profit_channel, stop_profit_listener, stop_loss_index_listener, stop_loss_channel, stop_loss_listener,
+    condition_order_index_listener,condition_order_channel,condition_order_listener,
+    create_time
+  </sql>
+
+    <select id="queryAllMapping" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cfd_contract_channel_mapping
+    </select>
+
+    <select id="queryMappingByContractId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cfd_contract_channel_mapping
+        where
+        contract_id=#{contractId}
+    </select>
+
+</mapper>
