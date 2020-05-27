@@ -26,7 +26,8 @@ public enum ExceptionCode {
 
     /*无权限用户*/
     UNAUTHORIZED_USERS(101010404, "unauthorized users"),
-
+    /*用户未登录*/
+    USER_NOT_LOGIN(109000701, "USER_NOT_LOGIN"),
     /**
      * 0700-0899：业务验证
      */
@@ -72,9 +73,31 @@ public enum ExceptionCode {
 
     /*保存用户登陆记录异常*/
     SAVE_USER_LOGIN_RECORD_EXCEPTION(101010714, "save user login record org.apdoer.common.service.exception"),
+    REQUEST_PARAM_EMPTY(109000500, "REQUEST_PARAM_EMPTY"),
+    /*平仓类型非法*/
+    CLOSE_TYPE_ILLEGAL(109000501, "CLOSE_TYPE_ILLEGAL"),
+    /*合约id为空*/
+    CONTRACT_ID_EMPTY(109000502, "CONTRACT_ID_EMPTY"),
+    /*用户id为空*/
+    USER_ID_EMPTY(109000503, "USER_ID_EMPTY"),
+    /*持仓uuid为空*/
+    POSI_UUID_EMPTY(109000504, "POSI_UUID_EMPTY"),
+    /*用户价格为空*/
+    USER_PRICE_EMPTY(109000505, "USER_PRICE_EMPTY"),
+    /*持仓方向非法*/
+    POSI_SIDE_ILLEGAL(109000506, "POSI_SIDE_ILLEGAL"),
+    /*下单币种为空*/
+    ORDER_CURRENCY_EMPTY(109000507, "ORDER_CURRENCY_EMPTY"),
+    /*开仓金额为空*/
+    OPEN_AMT_EMPTY(109000508, "OPEN_AMT_EMPTY"),
+    /*止盈价为空*/
+    STOP_PROFIT_PRICE_EMPTY(109000509, "STOP_PROFIT_PRICE_EMPTY"),
+    /*止损价为空*/
+    STOP_LOSS_PRICE_EMPTY(109000510, "STOP_LOSS_PRICE_EMPTY"),
 
 
-
+    /*账户余额不足*/
+    INSUFFICIENT_ACCOUNT_BALANCE(109000702, "INSUFFICIENT_ACCOUNT_BALANCE"),
 
     /*用户id异常*/
     USER_ID_ERROR(109000700, "USER_ID_ERROR"),
@@ -83,8 +106,39 @@ public enum ExceptionCode {
 
     /*仓位不存在*/
     POSI_NOT_EXIST(109000812, "POSI_NOT_EXIST"),
+    /*交易系统未准备完成*/
+    TRADE_SERVER_NOT_READY(109000800, "TRADE_SERVER_NOT_READY"),
+    /*开仓失败*/
+    OPEN_POSI_FAILED(109000801, "OPEN_POSI_FAILED"),
 
-
+    /*该币种不允许下单*/
+    CURRENCY_NOT_ALLOW_ORDER(109000803, "CURRENCY_NOT_ALLOW_ORDER"),
+    /*开仓金额不能整除最小交易量单位*/
+    OPEN_AMT_NOT_DIVISIBLE_LOT_SIZE(109000804, "OPEN_AMT_NOT_DIVISIBLE_LOT_SIZE"),
+    /*开仓金额超过限制*/
+    OPEN_AMT_LIMIT(109000805, "OPEN_AMT_LIMIT"),
+    /*下单币种非赠金*/
+    ORDER_CURRENCY_NOT_LENDING(109000806, "ORDER_CURRENCY_NOT_LENDING"),
+    /*赠金不存在*/
+    LENDING_NOT_EXIST(109000807, "LENDING_NOT_EXIST"),
+    /*赠金已使用*/
+    LENDING_IS_USED(109000808, "LENDING_IS_USED"),
+    /*该笔赠金不属于用户*/
+    LENDING_NOT_BELONG_USER(109000809, "LENDING_NOT_BELONG_USER"),
+    /*合约不存在*/
+    CONTRACT_NOT_EXIST(109000810, "CONTRACT_NOT_EXIST"),
+    /*设置止盈止损失败*/
+    STOP_PROFIT_LOSS_FAILD(109000811, "STOP_PROFIT_LOSS_FAILD"),
+    /*赠金无效*/
+    LENDING_INVALID(109000813, "LENDING_INVALID"),
+    /*条件单异常*/
+    ORDER_CONDITION_ERROR(109000814, "ORDER_CONDITION_ERROR"),
+    /*触发价格异常*/
+    TRIGGER_PRICE_INVALID(109000815, "trigger price invalid"),
+    /*杠杠倍数异常*/
+    LEVERAGE_INVALID(109000816, "leverage invalid"),
+    /*委托id非法*/
+    ORDERID_INVALID(109000817, "ORDERID invalid"),
 
 
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apdoer.trade.common.db.mapper.WebAssetAccountMapper">
+
+    <resultMap id="BaseResultMap" type="org.apdoer.trade.common.db.model.po.WebAssetAccountPo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="currency_id" jdbcType="INTEGER" property="currencyId"/>
+        <result column="available" jdbcType="DECIMAL" property="available"/>
+        <result column="locked" jdbcType="DECIMAL" property="locked"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, user_id, currency_id, available, locked, update_time
+    </sql>
+
+    <update id="updateUserAccount">
+        update
+            web_asset_account
+        set
+            available = #{available}
+        where
+            user_id = #{userId} and currency_id = #{currencyId}
+    </update>
+
+    <select id="getUserAccountForUpdate" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from
+            web_asset_account
+        where
+            user_id = #{userId} and currency_id = #{currencyId}
+        for update
+    </select>
+
+</mapper>

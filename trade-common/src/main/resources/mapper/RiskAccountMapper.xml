@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apdoer.trade.common.db.mapper.RiskAccountMapper">
+
+    <resultMap id="BaseResultMap" type="org.apdoer.trade.common.db.model.po.RiskAccountPo">
+        <id column="currency_id" jdbcType="INTEGER" property="currencyId"/>
+        <result column="risk_fund_balance" jdbcType="DECIMAL" property="riskFundBalance"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        currency_id, risk_fund_balance, create_time, update_time
+    </sql>
+
+    <insert id="insertOrUpdate">
+        insert into
+            cfd_risk_account
+            (
+                currency_id,
+                risk_fund_balance
+            )
+        values
+            (
+                #{currencyId},
+                #{riskFund}
+            )
+        on duplicate key update
+            risk_fund_balance =  values(risk_fund_balance) + risk_fund_balance
+    </insert>
+
+</mapper>

@@ -1,4 +1,4 @@
-package org.apdoer.trade.common.config;
+package org.apdoer.trade.core.config;
 
 import com.aliyun.openservices.ons.api.PropertyKeyConst;
 import com.aliyun.openservices.ons.api.bean.ProducerBean;
@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 @Configuration
 @ConditionalOnProperty(name = "rocket-mq.posi-property.enabled",havingValue = "true")
-public class PosiRockerMqConfig {
+public class PosiRocketMqConfig {
 
     @Autowired
     private PosiMqProperties properties;

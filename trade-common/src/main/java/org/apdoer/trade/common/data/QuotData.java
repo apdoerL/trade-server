@@ -17,6 +17,7 @@ public class QuotData {
 
     private static ConcurrentHashMap<Integer, BigDecimal> QUOT_DATA = new ConcurrentHashMap<>();
 
+    //todo
     public static void add(Integer contractId, BigDecimal price) {
         log.info("QUOT: contractId[{}],price[{}]", contractId, price);
         QUOT_DATA.put(contractId, price);

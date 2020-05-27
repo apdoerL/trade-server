@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.apdoer.trade.common.db.mapper.CoreContractOrderMapper" >
+  <resultMap id="BaseResultMap" type="org.apdoer.trade.common.db.model.po.CoreContractOrderPo" >
+    <id column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="posi_id" property="posiId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="contract_id" property="contractId" jdbcType="INTEGER" />
+    <result column="currency_id" property="currencyId" jdbcType="INTEGER" />
+    <result column="posi_side" property="posiSide" jdbcType="TINYINT" />
+    <result column="open_amt" property="openAmt" jdbcType="DECIMAL" />
+    <result column="leverage" property="leverage" jdbcType="INTEGER" />
+    <result column="trigger_price" property="triggerPrice" jdbcType="DECIMAL" />
+    <result column="real_trigger_price" property="realTriggerPrice" jdbcType="DECIMAL" />
+    <result column="stop_profit_price" property="stopProfitPrice" jdbcType="DECIMAL" />
+    <result column="stop_loss_price" property="stopLossPrice" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, posi_id, user_id, contract_id, currency_id, posi_side, open_amt, leverage, 
+    trigger_price, real_trigger_price, stop_profit_price, stop_loss_price, status, create_time, 
+    update_time
+  </sql>
+  
+  <select id="queryOrder" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"/> 
+  	from 
+  		 ${tableName} 
+  	where
+  		order_id = #{orderId}
+  		and user_id = #{userId}
+  		and status = #{status}
+  </select>
+  
+  <select id="getUnTriggerOrder" resultMap="BaseResultMap">
+     select
+         <include refid="Base_Column_List"/>
+     from
+         ${tableName}
+     where
+         status = 1
+  </select>
+  
+  <select id="queryUserUnTriggerOrder" resultMap="BaseResultMap">
+  	 select
+         <include refid="Base_Column_List"/>
+     from
+         ${tableName}
+     where
+     	user_id = #{userId}
+     	and status=1
+     	<if test="contractId != null">
+     		and contract_id = #{contractId}
+     	</if>
+  </select>
+  
+  <select id="queryHistory" resultMap="BaseResultMap">
+    select
+         <include refid="Base_Column_List"/>
+     from
+         ${tableName}
+     where
+     	user_id = #{userId}
+     	<if test="contractId != null">
+     		and contract_id = #{contractId}
+     	</if>
+     	<if test="side != null">
+     		and posi_side = #{side}
+     	</if>
+     	<if test="status != null">
+     		and status = #{status}
+     	</if>
+     	order by create_time desc
+  </select>
+  
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apdoer.trade.common.db.mapper.ContractPosiMapper">
+
+    <resultMap id="BaseResultMap" type="org.apdoer.trade.common.db.model.po.CoreContractPosiPo">
+        <id column="uuid" jdbcType="BIGINT" property="uuid"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="contract_id" jdbcType="INTEGER" property="contractId"/>
+        <result column="currency_id" jdbcType="INTEGER" property="currencyId"/>
+        <result column="posi_side" jdbcType="TINYINT" property="posiSide"/>
+        <result column="open_amt" jdbcType="DECIMAL" property="openAmt"/>
+        <result column="leverage" jdbcType="INTEGER" property="leverage"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="open_price" jdbcType="DECIMAL" property="openPrice"/>
+        <result column="open_fee_rate" jdbcType="DECIMAL" property="openFeeRate"/>
+        <result column="open_fee" jdbcType="DECIMAL" property="openFee"/>
+        <result column="close_price" jdbcType="DECIMAL" property="closePrice"/>
+        <result column="close_fee_rate" jdbcType="DECIMAL" property="closeFeeRate"/>
+        <result column="close_fee" jdbcType="DECIMAL" property="closeFee"/>
+        <result column="close_profit_loss" jdbcType="DECIMAL" property="closeProfitLoss"/>
+        <result column="close_time" jdbcType="TIMESTAMP" property="closeTime"/>
+        <result column="funding_fee" jdbcType="DECIMAL" property="fundingFee"/>
+        <result column="stop_profit_price" jdbcType="DECIMAL" property="stopProfitPrice"/>
+        <result column="stop_loss_price" jdbcType="DECIMAL" property="stopLossPrice"/>
+        <result column="max_loss_ratio" jdbcType="DECIMAL" property="maxLossRatio"/>
+        <result column="force_close_price" jdbcType="DECIMAL" property="forceClosePrice"/>
+        <result column="risk_funding" jdbcType="DECIMAL" property="riskFunding"/>
+        <result column="follow_user_id" jdbcType="INTEGER" property="followUserId"/>
+        <result column="follow_posi_id" jdbcType="BIGINT" property="followPosiId"/>
+        <result column="agent_user_id" jdbcType="INTEGER" property="agentUserId"/>
+        <result column="is_throw_out" jdbcType="TINYINT" property="isThrowOut" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        uuid, user_id, contract_id, currency_id, posi_side, open_amt, leverage, status, open_price,
+        open_fee_rate, open_fee, close_price, close_fee_rate, close_fee, close_profit_loss,
+        close_time, funding_fee, stop_profit_price, stop_loss_price, max_loss_ratio, force_close_price, risk_funding,
+        follow_user_id, follow_posi_id, agent_user_id, is_throw_out, create_time, update_time
+    </sql>
+
+    <insert id="insertPosi">
+
+    </insert>
+
+    <select id="getUnClosePosi" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from
+            ${tableName}
+        where
+            status = 1
+    </select>
+
+</mapper>

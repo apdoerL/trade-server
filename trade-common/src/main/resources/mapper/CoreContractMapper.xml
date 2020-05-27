@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apdoer.trade.common.db.mapper.CoreContractMapper">
+
+    <resultMap id="BaseResultMap" type="org.apdoer.trade.common.db.model.po.CoreContractPo">
+        <id column="contract_id" jdbcType="INTEGER" property="contractId"/>
+        <result column="symbol" jdbcType="VARCHAR" property="symbol"/>
+        <result column="open_fee_rate" jdbcType="DECIMAL" property="openFeeRate"/>
+        <result column="close_fee_rate" jdbcType="DECIMAL" property="closeFeeRate"/>
+        <result column="funding_fee_rate" jdbcType="DECIMAL" property="fundingFeeRate"/>
+        <result column="price_tick" jdbcType="DECIMAL" property="priceTick"/>
+        <result column="bid_spread" jdbcType="DECIMAL" property="bidSpread"/>
+        <result column="ask_spread" jdbcType="DECIMAL" property="askSpread"/>
+        <result column="max_loss_ratio" jdbcType="DECIMAL" property="maxLossRatio"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        contract_id, symbol, open_fee_rate, close_fee_rate, funding_fee_rate, price_tick,
+        bid_spread, ask_spread, max_loss_ratio, create_time, update_time
+    </sql>
+
+    <select id="getMaxContractId" resultType="java.lang.Integer">
+        SELECT
+        	IFNULL( MAX(contract_id), 0 )
+        FROM
+        	cfd_contract
+    </select>
+
+</mapper>

@@ -2,6 +2,7 @@ package org.apdoer.trade.quot.service.impl;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.apdoer.trade.common.config.EventBusThreadPoolProperties;
 import org.apdoer.trade.common.db.model.po.ContractChannelMappingPo;
 import org.apdoer.trade.common.event.eventbus.impl.GuavaEventBusManager;
 import org.apdoer.trade.common.service.QuotConfigCenterService;
@@ -22,6 +23,8 @@ public class QuotInitServiceImpl implements QuotInitService {
 
     @Autowired
     private QuotConfigCenterService quotConfigCenterService;
+    @Autowired
+    private EventBusThreadPoolProperties eventBusThreadPoolProperties;
 
     @Override
     public void init() {
@@ -44,8 +47,15 @@ public class QuotInitServiceImpl implements QuotInitService {
 
     public void indexPriceChannelInit(List<ContractChannelMappingPo> mappingList) {
         log.info("====index price channel init start ");
+        EventBusThreadPoolProperties.ThreadPoolConfig config = eventBusThreadPoolProperties.getQuotEventBusConfig();
         for (ContractChannelMappingPo mappingPo : mappingList) {
-            GuavaEventBusManager.getInstance().buildGuavaEventBus(mappingPo.getQuotChannel());
+            GuavaEventBusManager.getInstance().buildGuavaEventBus(
+                    mappingPo.getQuotChannel(),
+                    config.getCorePoolSize(),
+                    config.getMaxPoolSize(),
+                    config.getBackPressureSize(),
+                    config.getInitCapacity(),
+                    config.getKeepAlive());
         }
         log.info("====index price channel init end ");
     }

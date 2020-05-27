@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apdoer.trade.common.db.mapper.AgentSonMapper">
+    <resultMap id="BaseResultMap" type="org.apdoer.trade.common.db.model.po.AgentSonPo">
+        <id column="agent_user_id" jdbcType="INTEGER" property="agentUserId"/>
+        <id column="son_user_id" jdbcType="INTEGER" property="sonUserId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="AgentUserCurrencyMap" type="org.apdoer.trade.common.model.dto.AgentUserCurrencyDto">
+        <id column="agent_user_id" jdbcType="INTEGER" property="agentUserId"/>
+        <collection property="currencyList" ofType="org.apdoer.trade.common.model.dto.AgentUserCurrencyWrapDto">
+            <result column="currency_id" jdbcType="INTEGER" property="currencyId"/>
+            <result column="is_rebate" jdbcType="TINYINT" property="isRebate"/>
+            <result column="nominal_max_trade_amt" jdbcType="DECIMAL" property="nominalMaxTradeAmt"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        agent_user_id, son_user_id, create_time
+    </sql>
+
+    <select id="getAgentBySon" resultMap="AgentUserCurrencyMap">
+        SELECT
+        	cu.agent_user_id,
+            cafa.currency_id,
+        	cafa.is_rebate,
+        	cafa.nominal_max_trade_amt
+        FROM
+        	cfd_agent_son cs
+        	INNER JOIN cfd_agent_user cu ON cu.agent_user_id = cs.agent_user_id
+        	INNER JOIN cfd_agent_funding_alert cafa ON cafa.agent_user_id = cu.agent_user_id
+        WHERE
+        	cs.son_user_id = #{sonUserId}
+    </select>
+
+    <select id="getAgentIdBySon" resultType="java.lang.Integer">
+        select
+            agent_user_id
+        from
+            cfd_agent_son
+        where
+            son_user_id = #{sonUserId}
+        limit 1
+    </select>
+
+    <select id="getAgentInfo" resultMap="AgentUserCurrencyMap">
+        SELECT
+        	cu.agent_user_id,
+            cafa.currency_id,
+        	cafa.is_rebate,
+        	cafa.nominal_max_trade_amt
+        FROM
+            cfd_agent_user cu
+            INNER JOIN cfd_agent_funding_alert cafa on cafa.agent_user_id = cu.agent_user_id
+        where
+            cu.agent_user_id = #{agentUserId}
+    </select>
+
+</mapper>

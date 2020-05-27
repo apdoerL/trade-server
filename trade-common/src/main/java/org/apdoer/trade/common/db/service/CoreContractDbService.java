@@ -6,78 +6,66 @@ import java.util.List;
 
 public interface CoreContractDbService {
     /**
-     * @Author y
-     * @Description 获取最大合约id
-     * @Date 2020/3/29 1:09 下午
-     * @Return
-     **/
+     * 获取最大合约id
+     * @return
+     */
     Integer getMaxContractId();
 
     /**
-     * @Author y
-     * @Description 获取所有合约
-     * @Date 2020/3/31 4:14 下午
-     * @Return
-     **/
+     * 获取所有合约
+     * @return
+     */
     List<CoreContractPo> getAllContract();
 
     /**
-     * @Author y
-     * @Description 获取所有可下单币种
-     * @Date 2020/4/1 12:07 上午
-     * @Return
-     **/
+     * 获取所有可下单币种
+     * @return
+     */
     List<CoreContractOrderCurrencyPo> getAllOrderCurrency();
 
     /**
-     * @Author y
-     * @Description 获取所有合约杠杆
-     * @Date 2020/4/1 12:07 上午
-     * @Return
-     **/
+     * 获取所有合约杠杆
+     * @return
+     */
     List<CoreContractLeveragePo> getAllContractLeverage();
 
 
     /**
-     * @Author y
-     * @Description 根据表名获取未平仓数据
-     * @Date 2020/3/29 11:09 下午
-     * @Return
-     **/
+     * 根据表名获取未平仓数据
+     * @param userMod
+     * @return
+     */
     List<CoreContractPosiPo> getUnClosePosi(int userMod);
 
     /**
-     * @Author y
-     * @Description 更新持仓数据
-     * @Date 2020/4/1 12:06 上午
-     * @Return
-     **/
+     * 更新持仓数据
+     * @param posiPo
+     * @return
+     */
     int updatePosi(CoreContractPosiPo posiPo);
 
     /**
-     * @Author y
-     * @Description 新增持仓数据
-     * @Date 2020/4/1 1:37 上午
-     * @Return
-     **/
+     * 新增持仓数据
+     * @param posiPo
+     * @return
+     */
     int insertPosi(CoreContractPosiPo posiPo);
 
     /**
-     * @Author y
-     * @Description 新增持仓历史记录
-     * @Date 2020/4/2 11:11 上午
-     * @Return
-     **/
+     * 新增持仓历史记录
+     * @param posiPo
+     * @return
+     */
     int insertPosiHistory(CoreContractPosiPo posiPo);
 
     /**
-     * @Author y
-     * @Description 查询历史持仓
-     * @Date 2020/4/2 4:32 下午
-     * @Return
-     **/
+     * 查询历史持仓
+     * @param userId
+     * @param queryDate
+     * @return
+     */
     List<CoreContractPosiPo> historyOrderList(Integer userId, Long queryDate);
-    
+
     /**
      * 插入条件委托
      * @param orderPo
@@ -93,11 +81,11 @@ public interface CoreContractDbService {
     int updateOrder(CoreContractOrderPo orderPo);
     
     CoreContractOrderPo queryOrder(Long orderId, Integer userId, Integer status);
-    
+
     /**
      * 查询历史条件单
-     * @param contractId
      * @param userId
+     * @param contractId
      * @param side
      * @param status
      * @return

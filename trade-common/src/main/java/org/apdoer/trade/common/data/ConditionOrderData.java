@@ -8,8 +8,7 @@ import org.apdoer.trade.common.enums.PosiSideEnum;
 import org.apdoer.trade.common.enums.SlaveDataSortTypeEnum;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.*;
 
 /**
@@ -71,6 +70,31 @@ public class ConditionOrderData {
         BaseConditionOrderData orderData = orderPo.getPosiSide() == PosiSideEnum.BUY.getCode() ? BUY_ORDER : SELL_ORDER;
         orderData.remove(orderPo);
     }
+
+    /**
+     * 获取待触发的条件委托
+     * @param contractId
+     * @param triggerPrice
+     * @return
+     */
+    public static List<CoreContractOrderPo> getTriggerList(Integer contractId,BigDecimal triggerPrice){
+        List<CoreContractOrderPo> allOpenPosiList = new ArrayList<>();
+
+        //卖单触发,买单触发
+        List<Map<Long,CoreContractOrderPo>> openList = new ArrayList<>(2);
+        openList.addAll(BUY_ORDER.getRemoveList(contractId,triggerPrice));
+        openList.addAll(SELL_ORDER.getRemoveList(contractId,triggerPrice));
+
+        for (Map<Long, CoreContractOrderPo> orderPoMap : openList) {
+            Iterator<Map.Entry<Long, CoreContractOrderPo>> iterator = orderPoMap.entrySet().iterator();
+            while (iterator.hasNext()){
+                Map.Entry<Long, CoreContractOrderPo> entry = iterator.next();
+                allOpenPosiList.add(entry.getValue());
+            }
+        }
+        return allOpenPosiList;
+    }
+
 
     @Slf4j
     private static class OrderInitRunnable implements Runnable {
