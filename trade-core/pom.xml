@@ -17,6 +17,7 @@
             <groupId>org.apdoer</groupId>
             <artifactId>trade-common</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>

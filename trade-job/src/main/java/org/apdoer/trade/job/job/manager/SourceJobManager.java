@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apdoer.trade.common.event.payload.IndexPriceMessageProcessPayload;
 import org.apdoer.trade.common.service.QuotConfigCenterService;
+import org.apdoer.trade.job.config.JobThreadPool;
 import org.apdoer.trade.job.job.Job;
 import org.apdoer.trade.job.job.JobDesc;
 import org.apdoer.trade.job.job.factory.impl.SourceJobFactory;
@@ -37,6 +38,7 @@ public class SourceJobManager extends AbstractJobManager {
 
     //用于监控
     private Map<String, Job> jobMap = new ConcurrentHashMap<>();
+
     private Map<String, Runnable> runableMap = new ConcurrentHashMap<>();
 
 
@@ -46,7 +48,7 @@ public class SourceJobManager extends AbstractJobManager {
             this.jobMap.put(job.getJobDesc().getJobName(), job);
             Runnable runable = new JobRunnable(job);
             this.runableMap.put(job.getJobDesc().getJobName(), runable);
-            new Thread(runable).start();
+            JobThreadPool.getInstance().excute(runable);
         }
     }
 
@@ -54,7 +56,8 @@ public class SourceJobManager extends AbstractJobManager {
     protected List<Job> getJobList() {
         log.info("Build job start");
         List<Job> jobList = new ArrayList<>();
-        String sourcePath = System.getProperty(QuotConstants.SOURCE_PATH_KEY);
+//        String sourcePath = System.getProperty(QuotConstants.SOURCE_PATH_KEY);
+        String sourcePath = "D:\\apdoer\\trade-server\\trade-quot\\src\\main\\resources\\properties";
         List<Configuration<String, Object>> configList = this.getSourceConfiguration(sourcePath);
         if (null != configList && configList.size() > 0) {
             for (Configuration<String, Object> config : configList) {

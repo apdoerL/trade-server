@@ -88,7 +88,7 @@ public class MonitorInitServiceImpl implements MonitorInitService {
         log.info("====condition order index Listener init start ");
         for (ContractChannelMappingPo mappingPo : mappingList) {
             SourceEventListener listener = this.indexPriceListenerManager
-                    .buildIndexPriceListener(mappingPo.getConditionOrderIndexListener(), IndexHandleTypeEnum.CONDITION_ORDER);
+                    .buildIndexPriceListener(mappingPo.getConditionOrderIndexListener(), IndexHandleTypeEnum.condition_order);
             if (!listener.isSubscribeSystemChannel(mappingPo.getQuotChannel())) {
                 GuavaEventBus eventBus = (GuavaEventBus)GuavaEventBusManager.getInstance().getEventBus(mappingPo.getQuotChannel());
                 if (null != eventBus) {
@@ -122,7 +122,7 @@ public class MonitorInitServiceImpl implements MonitorInitService {
         log.info("====stop loss index Listener init start ");
         for (ContractChannelMappingPo mappingPo : mappingList) {
             SourceEventListener listener = this.indexPriceListenerManager
-                    .buildIndexPriceListener(mappingPo.getStopProfitIndexListener(), IndexHandleTypeEnum.STOP_LOSS);
+                    .buildIndexPriceListener(mappingPo.getStopProfitIndexListener(), IndexHandleTypeEnum.stop_Loss);
             // 沒有綁定改通道
             if (!listener.isSubscribeSystemChannel(mappingPo.getQuotChannel())) {
                 GuavaEventBus eventBus = (GuavaEventBus) GuavaEventBusManager.getInstance().getEventBus(mappingPo.getQuotChannel());
@@ -157,7 +157,7 @@ public class MonitorInitServiceImpl implements MonitorInitService {
         log.info("====stop profit index Listener init start ");
         for (ContractChannelMappingPo mappingPo : mappingList) {
             SourceEventListener listener = this.indexPriceListenerManager
-                    .buildIndexPriceListener(mappingPo.getStopProfitIndexListener(), IndexHandleTypeEnum.STOP_PROFIT);
+                    .buildIndexPriceListener(mappingPo.getStopProfitIndexListener(), IndexHandleTypeEnum.stop_profit);
             // 沒有綁定改通道
             if (!listener.isSubscribeSystemChannel(mappingPo.getQuotChannel())) {
                 GuavaEventBus eventBus = (GuavaEventBus) GuavaEventBusManager.getInstance().getEventBus(mappingPo.getQuotChannel());
@@ -191,7 +191,7 @@ public class MonitorInitServiceImpl implements MonitorInitService {
     private void strongFlatIndexListenerInit(List<ContractChannelMappingPo> mappingList) {
         log.info("====strong flat index Listener init start ");
         for (ContractChannelMappingPo mappingPo : mappingList) {
-            SourceEventListener sourceEventListener = indexPriceListenerManager.buildIndexPriceListener(mappingPo.getFlListener(), IndexHandleTypeEnum.STRONG_FLAT);
+            SourceEventListener sourceEventListener = indexPriceListenerManager.buildIndexPriceListener(mappingPo.getFlListener(), IndexHandleTypeEnum.strong_flat);
             if (!sourceEventListener.isSubscribeSystemChannel(mappingPo.getFlChannel())) {
                 GuavaEventBus eventBus = (GuavaEventBus) GuavaEventBusManager.getInstance().getEventBus(mappingPo.getQuotChannel());
                 if (eventBus != null) {

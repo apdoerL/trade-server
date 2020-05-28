@@ -27,9 +27,9 @@
         	cafa.is_rebate,
         	cafa.nominal_max_trade_amt
         FROM
-        	cfd_agent_son cs
-        	INNER JOIN cfd_agent_user cu ON cu.agent_user_id = cs.agent_user_id
-        	INNER JOIN cfd_agent_funding_alert cafa ON cafa.agent_user_id = cu.agent_user_id
+        	web_agent_son cs
+        	INNER JOIN web_agent_user cu ON cu.agent_user_id = cs.agent_user_id
+        	INNER JOIN web_agent_funding_alert cafa ON cafa.agent_user_id = cu.agent_user_id
         WHERE
         	cs.son_user_id = #{sonUserId}
     </select>
@@ -38,7 +38,7 @@
         select
             agent_user_id
         from
-            cfd_agent_son
+            web_agent_son
         where
             son_user_id = #{sonUserId}
         limit 1
@@ -51,8 +51,8 @@
         	cafa.is_rebate,
         	cafa.nominal_max_trade_amt
         FROM
-            cfd_agent_user cu
-            INNER JOIN cfd_agent_funding_alert cafa on cafa.agent_user_id = cu.agent_user_id
+            web_agent_user cu
+            INNER JOIN web_agent_funding_alert cafa on cafa.agent_user_id = cu.agent_user_id
         where
             cu.agent_user_id = #{agentUserId}
     </select>

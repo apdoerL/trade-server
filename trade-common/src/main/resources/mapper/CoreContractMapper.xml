@@ -25,7 +25,7 @@
         SELECT
         	IFNULL( MAX(contract_id), 0 )
         FROM
-        	cfd_contract
+        	core_contract
     </select>
 
 </mapper>

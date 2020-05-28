@@ -32,13 +32,13 @@
     <select id="queryAllMapping" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cfd_contract_channel_mapping
+        from core_contract_channel_mapping
     </select>
 
     <select id="queryMappingByContractId" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cfd_contract_channel_mapping
+        from core_contract_channel_mapping
         where
         contract_id=#{contractId}
     </select>

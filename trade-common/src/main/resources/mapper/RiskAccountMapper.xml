@@ -15,7 +15,7 @@
 
     <insert id="insertOrUpdate">
         insert into
-            cfd_risk_account
+            web_risk_account
             (
                 currency_id,
                 risk_fund_balance

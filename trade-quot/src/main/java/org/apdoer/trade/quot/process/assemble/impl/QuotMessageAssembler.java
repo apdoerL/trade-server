@@ -25,7 +25,7 @@ public class QuotMessageAssembler implements Assembler<IndexPriceMessageSourcePa
 		return this.buildProcessPayload(data);
 	}
 	
-	private IndexPriceMessageProcessPayload buildProcessPayload(IndexPriceMessageSourcePayload data) {
+	private synchronized IndexPriceMessageProcessPayload buildProcessPayload(IndexPriceMessageSourcePayload data) {
 		if (null != data) {
 			ContractChannelMappingPo po = this.quotConfigCenterService.queryContractChannelMaping(((IndexPriceDto)data.getData()).getContractId());
 			IndexPriceMessageProcessPayload payload = new IndexPriceMessageProcessPayload();

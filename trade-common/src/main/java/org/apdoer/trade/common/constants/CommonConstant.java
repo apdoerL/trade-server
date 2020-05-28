@@ -10,11 +10,11 @@ public class CommonConstant {
     }
 
     /*持仓表前缀*/
-    public static final String POSI_TABLE_NAME = "cfd_contract_posi_";
+    public static final String POSI_TABLE_NAME = "core_contract_posi_";
     /*历史持仓表前缀*/
-    public static final String HIS_POSI_TABLE_NAME = "cfd_contract_posi_his_";
+    public static final String HIS_POSI_TABLE_NAME = "core_contract_posi_his_";
     /*条件委托表前缀*/
-    public static final String ORDER_TABLE_NAME = "cfd_contract_order_";
+    public static final String ORDER_TABLE_NAME = "core_contract_order_";
 
     /*持仓redis前缀，规则 p_{contractId}_{userId}*/
     public static final String POSI_REDIS_PREFIX = "p_";

@@ -107,7 +107,7 @@ public class SourceJobFactory implements JobFactory<String, Object> {
 
     private JobDesc buildJobDescribution(String jobName, String jobGroup) {
         JobDesc jobDescribution = new JobDesc();
-        jobDescribution.setJobType(JobType.QUOT_JOB);
+        jobDescribution.setJobType(JobDesc.JobType.QUOT_JOB);
         jobDescribution.setJobGroup(jobGroup);
         jobDescribution.setJobName(jobName);
         return jobDescribution;

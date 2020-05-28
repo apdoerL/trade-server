@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="30 seconds">
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <property name="LOG_HOME" value="/Users/congyang/log/web/newcoin-cfd-trade-server/logs"/>
+    <property name="APP_NAME" value="newcoin-cfd-trade-server"/>
+    <property name="MAX_FILE_SIZE" value="100MB"/>
+    <property name="QUEUE_SIZE" value="2048"/>
+    <property name="INCLUDE_CALLER_DATA" value="false"/>
+    <property name="MAX_HISTORY" value="30"/>
+    <property name="immediateFlush" value="true"/>
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 控制台 异步日志 -->
+    <appender name="stdout-asysc" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢弃日志，如果队列的80%已满，则丢弃TRACE,DEBUG,INFO日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列深度，默认为256 -->
+        <queueSize>${QUEUE_SIZE}</queueSize>
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <appender name="ref-debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当前log文件名称 -->
+        <file>${LOG_HOME}/debug/${APP_NAME}.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤级别 -->
+            <level>DEBUG</level>
+            <onMismatch>DENY</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/debug/${APP_NAME}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <!-- 追加方式记录日志 -->
+        <append>true</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ref-info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当前log文件名称 -->
+        <file>${LOG_HOME}/info/${APP_NAME}.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤级别 -->
+            <level>INFO</level>
+            <onMismatch>DENY</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/info/${APP_NAME}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!-- 单个文件最大size -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <!-- 追加方式记录日志 -->
+        <append>true</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ref-warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当前log文件名称 -->
+        <file>${LOG_HOME}/warn/${APP_NAME}.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤级别 -->
+            <level>WARN</level>
+            <onMismatch>DENY</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/warn/${APP_NAME}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!-- 单个文件最大size -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <!-- 追加方式记录日志 -->
+        <append>true</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ref-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当前log文件名称 -->
+        <file>${LOG_HOME}/error/${APP_NAME}.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤级别 -->
+            <level>ERROR</level>
+            <onMismatch>DENY</onMismatch>
+            <onMatch>ACCEPT</onMatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/error/${APP_NAME}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!-- 单个文件最大size -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <!-- 追加方式记录日志 -->
+        <append>true</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+
+    <!-- 时间滚动输出debug 异步日志 -->
+    <appender name="file-debug-asysc" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢弃日志，如果队列的80%已满，则丢弃TRACE,DEBUG,INFO日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列深度，默认为256 -->
+        <queueSize>${QUEUE_SIZE}</queueSize>
+        <appender-ref ref="ref-debug"/>
+    </appender>
+
+    <!-- 时间滚动输出info 异步日志 -->
+    <appender name="file-info-asysc" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢弃日志，如果队列的80%已满，则丢弃TRACE,DEBUG,INFO日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列深度，默认为256 -->
+        <queueSize>${QUEUE_SIZE}</queueSize>
+        <appender-ref ref="ref-info"/>
+    </appender>
+
+    <!-- 时间滚动输出warn 异步日志 -->
+    <appender name="file-warn-asysc" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢弃日志，如果队列的80%已满，则丢弃TRACE,DEBUG,INFO日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列深度，默认为256 -->
+        <queueSize>${QUEUE_SIZE}</queueSize>
+        <appender-ref ref="ref-warn"/>
+    </appender>
+
+    <!-- 时间滚动输出error 异步日志 -->
+    <appender name="file-error-asysc" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢弃日志，如果队列的80%已满，则丢弃TRACE,DEBUG,INFO日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列深度，默认为256 -->
+        <queueSize>${QUEUE_SIZE}</queueSize>
+        <appender-ref ref="ref-error"/>
+    </appender>
+
+
+    <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
+
+    <!--myibatis log configure-->
+    <logger name="org.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="com.newcoin.cfd.trade.common.db.mapper" level="DEBUG"/>
+    <logger name="com.newcoin.cfd.trade.common.data.QuotData" level="DEBUG"/>
+    <logger name="com.newcoin.cfd.quot.source.serialization.impl.QuotZmqDeserializer" level="DEBUG"/>
+
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="stdout-asysc"/>
+        <appender-ref ref="file-debug-asysc"/>
+        <appender-ref ref="file-info-asysc"/>
+        <appender-ref ref="file-warn-asysc"/>
+        <appender-ref ref="file-error-asysc"/>
+    </root>
+</configuration>

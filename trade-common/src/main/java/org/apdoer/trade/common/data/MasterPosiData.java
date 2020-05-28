@@ -148,7 +148,7 @@ public class MasterPosiData {
     }
 
     @Slf4j
-    private class PosiInitRunnable implements Runnable {
+    private static class PosiInitRunnable implements Runnable {
 
         private CountDownLatch cdl;
         private int initCapacity;

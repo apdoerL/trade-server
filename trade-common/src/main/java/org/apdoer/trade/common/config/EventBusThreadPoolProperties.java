@@ -18,6 +18,9 @@ public class EventBusThreadPoolProperties {
     private ThreadPoolConfig stopLossEventBusConfig;
     private ThreadPoolConfig conditionOrderEventBusConfig;
     private ThreadPoolConfig quotEventBusConfig;
+    private ThreadPoolConfig posiOpenEventBusConfig;
+    private ThreadPoolConfig posiCloseEventBusConfig;
+
 
 
     @Data

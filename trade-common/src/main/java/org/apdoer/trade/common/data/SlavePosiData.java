@@ -51,7 +51,7 @@ public class SlavePosiData {
     }
 
     /**
-     * 仅住持仓区域调用
+     * 仅主持仓区域调用
      *
      * @param slavePosiDataDto
      */

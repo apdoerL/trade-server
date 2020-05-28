@@ -1,0 +1,192 @@
+spring:
+  cloud:
+    config:
+      name: trade-server
+      profile: dev
+      label: dev
+      discovery:
+        enabled: true
+        service-id: config-server
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+
+#server:
+#  port: 8000
+#  tomcat:
+#    max-connections: 0
+#    max-http-post-size: 0
+#    max-threads: 0
+#    min-spare-threads: 0
+#    remote-ip-header: X-FORWARDED-FOR
+#    uri-encoding: UTF-8
+#  servlet:
+#    context-path: /
+#thread:
+#  posi-flat:
+#    core-pool-size: 20 #强平单线程池：核心线程数
+#    max-pool-size: 20  #强平单线程池：最大线程数
+#    keep-alive_time: 30 #线程空闲时，存活时间
+#    queue-capacity: 300000 #线程池队列大小
+#    queue-backpressure: 280000 #反压阈值
+#  posi-open:
+#    core-pool-size: 20 #条件单线程池：核心线程数
+#    max-pool-size: 20  #条件单线程池：最大线程数
+#    keep-alive_time: 30 #线程空闲时，存活时间
+#    queue-capacity: 300000 #线程池队列大小
+#    queue-backpressure: 280000 #反压阈值
+#  posi-sync:
+#    core-pool-size: 20 #数据同步线程池：核心线程数
+#    max-pool-size: 20  #数据同步线程池：最大线程数
+#    keep-alive_time: 30 #线程空闲时，存活时间
+#    queue-capacity: 300000 #线程池队列大小
+#    queue-backpressure: 280000 #反压阈值
+#
+#eventbus:
+#  quotEventBusConfig:
+#    corePoolSize: 5 #行情(最新指数价/表计价) eventbus：核心线程数
+#    maxPoolSize: 5  # 最大线程数
+#    initCapacity: 300000 # 初始队列大小
+#    backPressureSize: 250000 #反压阈值
+#    keepAlive: 30 # 线程空闲存活时间 单位秒
+#  posiOpenEventBusConfig:
+#    corePoolSize: 5 # 开仓eventbus：核心线程数
+#    maxPoolSize: 5  # 最大线程数
+#    initCapacity: 300000 # 初始队列大小
+#    backPressureSize: 250000 #反压阈值
+#    keepAlive: 30 # 线程空闲存活时间 单位秒
+#  posiCloseEventBusConfig:
+#    corePoolSize: 10 # 平仓 eventbus：核心线程数
+#    maxPoolSize: 10  # 最大线程数
+#    initCapacity: 500000 # 初始队列大小
+#    backPressureSize: 400000 #反压阈值
+#    keepAlive: 30 # 线程空闲存活时间 单位秒
+#  stopFlatEventBusConfig:
+#    corePoolSize: 10 # 强平 eventbus：核心线程数
+#    maxPoolSize: 10  # 最大线程数
+#    initCapacity: 500000 # 初始队列大小
+#    backPressureSize: 400000 #反压阈值
+#    keepAlive: 30 # 线程空闲存活时间 单位秒
+#  stopProfitEventBusConfig:
+#    corePoolSize: 10 # 止盈 eventbus：核心线程数
+#    maxPoolSize: 10  # 最大线程数
+#    initCapacity: 500000 # 初始队列大小
+#    backPressureSize: 400000 #反压阈值
+#    keepAlive: 30 # 线程空闲存活时间 单位秒
+#  stopLossEventBusConfig:
+#    corePoolSize: 10 # 止损 eventbus：核心线程数
+#    maxPoolSize: 10  # 最大线程数
+#    initCapacity: 500000 # 初始队列大小
+#    backPressureSize: 400000 #反压阈值
+#    keepAlive: 30 # 线程空闲存活时间 单位miao
+#  conditionOrderEventBusConfig:
+#    corePoolSize: 10 # 条件单 eventbus：核心线程数
+#    maxPoolSize: 10  # 最大线程数
+#    initCapacity: 500000 # 初始队列大小
+#    backPressureSize: 400000 #反压阈值
+#    keepAlive: 30 # 线程空闲存活时间 单位秒
+#rocket-mq:
+#  posi-property:
+#    enabled: true
+#    access-key: LTAIepwrtDp0bVYH
+#    secret-key: eCHdiRFW6xKa5GBAy6gGJcKSjd3xSk
+#    namesrv-addr: http://MQ_INST_1626951952109175_BbkjSBlU.mq-internet-access.mq-internet.aliyuncs.com:80
+#    close-producer: # 平仓mq配置
+#      group-id: GID_close_posi_normal_producer_test
+#      topic: close_posi_public_test
+#      tags: close_posi_success
+#    open-producer: # 开仓mq配置
+#      group-id: GID_open_posi_normal_producer_test
+#      topic: open_posi_public_test
+#      tags: open_posi_success
+#    lending-open-producer: # 赠金开仓延迟mq配置
+#      group-id: GID_lending_open_posi_delay_producer_test
+#      topic: lending_open_posi_public_test
+#      tags: lending_open_posi_success
+#    lending-open-consumer:
+#      group-id: GID_lending_open_posi_delay_consumer_test
+#      message-model: CLUSTERING
+#      max-reconsume-times: 16
+#      topic: lending_open_posi_public_test
+#      tags: lending_open_posi_success
+#
+#trade-server:
+#  debug: true # 交易是否开启调式模式
+#  machine-partition: 10 # 交易服务分区号
+#  reserve-capacity: 10 # List预留容量
+#  currency-id:
+#    lending: 8 # 赠金币种
+#  posi:
+#    lending-delay: 24 # 赠金开仓，自动平仓间隔，单位：小时
+#
+#spring:
+#  application:
+#    name: trade-server
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://39.105.47.53/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+#    username: root
+#    password: 123456
+#    type: com.zaxxer.hikari.HikariDataSource
+#  hikari:
+#    minimum-idle: 5
+#    idle-timeout: 180000
+#    maximum-pool-size: 10
+#    auto-commit: true
+#    pool-name: MyHikariCP
+#    max-lifetime: 1800000
+#    connection-timeout: 30000
+#    connection-test-query: SELECT 1
+#  redis:
+#    host: 39.105.47.53
+#    port: 6379
+#    password: Loh3wa#k
+#    testOnBorrow: false
+#    testOnReturn: false
+#    timeout: 60000
+#    pool:
+#      max-total: 200
+#      max-active: 200
+#      max-idle: 50
+#      max-wait: -1
+#      min-idle: 20
+#  trade-redis:
+#    posi: 2 # 持仓redis database
+#
+#mybatis:
+#  logImpl: STDOUT_LOGGING
+#  mapper-locations: classpath*:mapper/*.xml
+#
+#logging:
+#  config: classpath:logback-${spring.profiles.active:dev}.xml
+#
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+#
+#ribbon:
+#  ReadTimeout: 55000
+#  ConnectTimeout: 55000
+#
+#feign:
+#  client:
+#    config:
+#      feignName:
+#        connectTimeout: 15000
+#        readTimeout: 15000
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000
